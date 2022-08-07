@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <div class="signUpDiv">
+      <form action="/signUp" method="post">
+        {% csrf_token %}
+        <div class="labelBox">
+          <label for="">Username: </label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter your Username"
+            required
+          />
+        </div>
+        <div class="labelBox">
+          <label for="">First Name: </label>
+          <input
+            type="text"
+            id="fname"
+            name="fname"
+            placeholder="Enter your First Name"
+            required
+          />
+        </div>
+        <div class="labelBox">
+          <label for="">Last Name: </label>
+          <input
+            type="text"
+            id="lname"
+            name="lname"
+            placeholder="Enter your Last Name"
+            required
+          />
+        </div>
+        <div class="labelBox">
+          <label for="">Email: </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your Email"
+            required
+          />
+          <label class="result" style="display: none; color: red"
+            >Enter Valid Email</label
+          >
+        </div>
+        <div class="labelBox">
+          <label for="">Password: </label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <div class="labelBox">
+          <label for="">Confirm Password: </label>
+          <input type="text" id="cpassword" name="cpassword" required />
+        </div>
+
+        <button type="submit" id="signUpButton">Sign Up</button>
+      </form>
+    </div>
+  </body>
+  <script>
+    $(document).ready(function () {
+      $("#signUpButton").click(function () {
+        debugger;
+        var email = $("#email").val();
+        var emailRegex = new RegExp("^(.+)@(.+)$");
+        if (!emailRegex.test(email)) {
+          $(".result").css("display", "block");
+        } else {
+          $(".result").hide();
+        }
+      });
+    });
+    // function helloWorld() {
+    //   $(".result").show();
+    // }
+    // const validateEmail = (email) =>{
+    //     return email.match(
+    //         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-z]{2,}))$/
+    //     );
+    // };
+
+    // const validate = () =>{
+    //     const $result = $('#result');
+    //     const email = $('#email').val();
+    //     $result.text('');
+
+    //     if(validateEmail(email)){
+
+    //     }
+    // }
+
+    // function emailCheck(emailInput) {
+    //   if (emailInput.match(filter)) {
+    //     $result.text(emailInput + " is valid :)");
+    //     $result.css("color", "green");
+    //   } else {
+    //     $result.text(emailInput + " is not valid :(");
+    //     $result.css("color", "red");
+    //   }
+    // }
+  </script>
+
+  <style>
+    .signUpDiv {
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      border: 2px solid orangered;
+      border-radius: 25px;
+      border-bottom-width: 5px;
+      border-right-width: 5px;
+      margin: auto;
+      width: 52%;
+      height: 100%;
+    }
+    .labelBox {
+      display: flex;
+      margin-top: 10px;
+    }
+    #signUpButton {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      cursor: pointer;
+      width: 100px;
+      border: none;
+      border-radius: 50px;
+      color: white;
+      background-color: red;
+    }
+  </style>
+</html>
